@@ -21,7 +21,7 @@ if(isset($_GET['ordenacao'])){
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -97,8 +97,8 @@ if(isset($_GET['ordenacao'])){
                     foreach($clientes as $key=>$cliente){
 
                         $enderecoCobranca = '';
-                        if($cliente->getEnderecoCobrança()){
-                            $enderecoCobranca = "<strong>Endereço de Cobrança:</strong> {$cliente->getEnderecoCobrança()}";
+                        if($cliente->getEnderecoCobranca()){
+                            $enderecoCobranca = "<strong>Endereco de Cobranca:</strong> {$cliente->getEnderecoCobranca()}";
                         }
 
                         echo "<tr><td>{$key}</td>";
@@ -113,7 +113,7 @@ if(isset($_GET['ordenacao'])){
                                     <div class='modal-content'>
                                       <div class='modal-header'>
                                         <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
-                                        <h4 class='modal-title' id='myModalLabel'>Modal title</h4>
+                                        <h4 class='modal-title' id='myModalLabel'>Detalhes</h4>
                                       </div>
                                       <div class='modal-body'>
                                         <strong>Telefone :</strong> {$cliente->getTelefone()} <br>

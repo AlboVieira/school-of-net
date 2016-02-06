@@ -13,7 +13,7 @@ class Cliente
     private $nome;
     private $cpf;
     private $endereco;
-    private $enderecoCobrança;
+    private $enderecoCobranca;
     private $telefone;
     private $filiacao;
     private $tipoCliente;
@@ -38,7 +38,7 @@ class Cliente
         $this->filiacao = !is_null($filiacao) ? $filiacao: null;
         $this->tipoCliente = !is_null($tipoCliente) ? $tipoCliente: null;
         $this->nvlImportancia = !is_null($nvlImportancia) ? $nvlImportancia: null;
-        $this->enderecoCobrança = !is_null($enderecoCobranca) ? $enderecoCobranca : null;
+        $this->enderecoCobranca = !is_null($enderecoCobranca) ? $enderecoCobranca : null;
     }
 
     public function getList(){
@@ -119,9 +119,9 @@ class Cliente
     /**
      * @return null
      */
-    public function getEnderecoCobrança()
+    public function getEnderecoCobranca()
     {
-        return $this->enderecoCobrança;
+        return $this->enderecoCobranca;
     }
 
     /**
