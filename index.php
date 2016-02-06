@@ -83,6 +83,7 @@ if(isset($_GET['ordenacao'])){
                     <th>Nome</th>
                     <th>Cpf</th>
                     <th>Endereco</th>
+                    <th>Tipo</th>
                     <th>Acao</th>
                 </tr>
                 <tr>
@@ -93,11 +94,18 @@ if(isset($_GET['ordenacao'])){
                     <?php
                     /** @var Cliente $cliente */
                     foreach($clientes as $key=>$cliente){
+
+                        $enderecoCobranca = '';
+                        if($cliente->getEnderecoCobrança()){
+                            $enderecoCobranca = "<strong>Endereço de Cobrança:</strong> {$cliente->getEnderecoCobrança()}";
+                        }
+
                         echo "<tr><td>{$key}</td>";
                         echo "<td>{$cliente->getNome()}</td>";
                         echo "<td>{$cliente->getCpf()}</td>";
                         echo "<td>{$cliente->getEndereco()}</td>";
-                        echo "<td class='text-center'><button type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#myModal{$key}'>Ver Detalhes</button></td>";
+                        echo "<td>". Cliente::getLabelTipoCliente($cliente->getTipoCliente()) ."</td>";
+                        echo "<td class='text-center'><button type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#myModal{$key}'>Ver Detalhes</button></td>";
 
                         echo "<div class='modal fade' id='myModal{$key}' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
                                   <div class='modal-dialog' role='document'>
@@ -107,8 +115,10 @@ if(isset($_GET['ordenacao'])){
                                         <h4 class='modal-title' id='myModalLabel'>Modal title</h4>
                                       </div>
                                       <div class='modal-body'>
-                                        Telefone : {$cliente->getTelefone()}
-                                        Filiacao : {$cliente->getFiliacao()}
+                                        <strong>Telefone :</strong> {$cliente->getTelefone()} <br>
+                                        <strong>Filiacao :</strong> {$cliente->getFiliacao()} <br>
+                                        <strong>Nivel de importancia :</strong> {$cliente->getNvlImportancia()}
+                                        {$enderecoCobranca}
                                       </div>
                                       <div class='modal-footer'>
                                         <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
