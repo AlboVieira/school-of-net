@@ -6,6 +6,8 @@
  * Date: 05/02/2016
  * Time: 22:27
  */
+namespace SON;
+
 class Cliente
 {
     private $nome;

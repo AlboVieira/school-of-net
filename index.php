@@ -1,6 +1,7 @@
 <?php
-require 'Cliente.php';
-$instancia = new Cliente();
+require_once 'Autoload.php';
+
+$instancia = new \SON\Cliente();
 $clientes = $instancia->getList();
 
 $ordenarValue = 'desc';
@@ -92,7 +93,7 @@ if(isset($_GET['ordenacao'])){
                         <button type='submit' class='btn btn-success btn-sm'><?php echo $ordenarLabel ?></button>
                     </form>
                     <?php
-                    /** @var Cliente $cliente */
+                    /** @var \SON\Cliente $cliente */
                     foreach($clientes as $key=>$cliente){
 
                         $enderecoCobranca = '';
@@ -104,7 +105,7 @@ if(isset($_GET['ordenacao'])){
                         echo "<td>{$cliente->getNome()}</td>";
                         echo "<td>{$cliente->getCpf()}</td>";
                         echo "<td>{$cliente->getEndereco()}</td>";
-                        echo "<td>". Cliente::getLabelTipoCliente($cliente->getTipoCliente()) ."</td>";
+                        echo "<td>". \SON\Cliente::getLabelTipoCliente($cliente->getTipoCliente()) ."</td>";
                         echo "<td class='text-center'><button type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#myModal{$key}'>Ver Detalhes</button></td>";
 
                         echo "<div class='modal fade' id='myModal{$key}' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
