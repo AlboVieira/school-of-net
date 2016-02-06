@@ -3,6 +3,21 @@ require 'Cliente.php';
 $instancia = new Cliente();
 $clientes = $instancia->getList();
 
+$ordenarValue = 'desc';
+$ordenarLabel = 'Descendente';
+
+if(isset($_GET['ordenacao'])){
+
+    if($_GET['ordenacao'] == 'desc'){
+        $ordenarValue = 'asc';
+        $ordenarLabel = 'Ascendente';
+    }else{
+        $ordenarValue = 'desc';
+        $ordenarLabel = 'Descendente';
+    }
+    $clientes = $instancia->orderList($ordenarValue);
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -64,16 +79,22 @@ $clientes = $instancia->getList();
         <div class="col-lg-12 text-left">
             <table class="table table-bordered">
                 <tr>
+                    <th>Id</th>
                     <th>Nome</th>
                     <th>Cpf</th>
                     <th>Endereco</th>
                     <th>Acao</th>
                 </tr>
                 <tr>
+                    <form method="get">
+                        <input type="hidden" name="ordenacao" value="<?php echo $ordenarValue ?>" />
+                        <button type='submit' class='btn btn-success btn-sm'><?php echo $ordenarLabel ?></button>
+                    </form>
                     <?php
                     /** @var Cliente $cliente */
                     foreach($clientes as $key=>$cliente){
-                        echo "<tr><td>{$cliente->getNome()}</td>";
+                        echo "<tr><td>{$key}</td>";
+                        echo "<td>{$cliente->getNome()}</td>";
                         echo "<td>{$cliente->getCpf()}</td>";
                         echo "<td>{$cliente->getEndereco()}</td>";
                         echo "<td class='text-center'><button type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#myModal{$key}'>Ver Detalhes</button></td>";
