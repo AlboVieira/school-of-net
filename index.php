@@ -118,7 +118,7 @@ if(isset($_GET['ordenacao'])){
                                       <div class='modal-body'>
                                         <strong>Telefone :</strong> {$cliente->getTelefone()} <br>
                                         <strong>Filiacao :</strong> {$cliente->getFiliacao()} <br>
-                                        <strong>Nivel de importancia :</strong> {$cliente->getNvlImportancia()}
+                                        <strong>Nivel de importancia :</strong> {$cliente->getNvlImportancia()}<br>
                                         {$enderecoCobranca}
                                       </div>
                                       <div class='modal-footer'>
