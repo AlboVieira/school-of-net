@@ -1,8 +1,8 @@
 <?php
 require_once 'Autoload.php';
 
-$instancia = new \SON\Cliente();
-$clientes = $instancia->getList();
+$instancia = new \SON\Cliente\ListaClientes();
+$listaClientes = $instancia->getList();
 
 $ordenarValue = 'desc';
 $ordenarLabel = 'Descendente';
@@ -16,7 +16,7 @@ if(isset($_GET['ordenacao'])){
         $ordenarValue = 'desc';
         $ordenarLabel = 'Descendente';
     }
-    $clientes = $instancia->orderList($ordenarValue);
+    $listaClientes = $instancia->orderList($ordenarValue);
 }
 
 ?>
@@ -82,7 +82,7 @@ if(isset($_GET['ordenacao'])){
                 <tr>
                     <th>Id</th>
                     <th>Nome</th>
-                    <th>Cpf</th>
+                    <th>Documento</th>
                     <th>Endereco</th>
                     <th>Tipo</th>
                     <th>Acao</th>
@@ -93,8 +93,20 @@ if(isset($_GET['ordenacao'])){
                         <button type='submit' class='btn btn-success btn-sm'><?php echo $ordenarLabel ?></button>
                     </form>
                     <?php
-                    /** @var \SON\Cliente $cliente */
-                    foreach($clientes as $key=>$cliente){
+                    /** @var SON\Cliente\AbstractCliente $cliente */
+                    foreach($listaClientes as $key=>$cliente){
+
+                        $filiacao = '';
+                        if($cliente instanceof \SON\Cliente\TipoCliente\ClientePessoaFisica){
+                            $nome = $cliente->getNome();
+                            $documento = $cliente->getCpf();
+                            $tipoCliente = $cliente->getLabelTipoCliente();
+                            $filiacao = "<br><strong>Filiacao:</strong> {$cliente->getFiliacao()} <br>";
+                        }else{
+                            $nome = $cliente->getNomeEmpresa();
+                            $documento = $cliente->getCnpj();
+                            $tipoCliente = $cliente->getLabelTipoCliente();
+                        }
 
                         $enderecoCobranca = '';
                         if($cliente->getEnderecoCobranca()){
@@ -102,10 +114,10 @@ if(isset($_GET['ordenacao'])){
                         }
 
                         echo "<tr><td>{$key}</td>";
-                        echo "<td>{$cliente->getNome()}</td>";
-                        echo "<td>{$cliente->getCpf()}</td>";
+                        echo "<td>{$nome}</td>";
+                        echo "<td>{$documento}</td>";
                         echo "<td>{$cliente->getEndereco()}</td>";
-                        echo "<td>". \SON\Cliente::getLabelTipoCliente($cliente->getTipoCliente()) ."</td>";
+                        echo "<td>".$tipoCliente."</td>";
                         echo "<td class='text-center'><button type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#myModal{$key}'>Ver Detalhes</button></td>";
 
                         echo "<div class='modal fade' id='myModal{$key}' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
@@ -117,9 +129,9 @@ if(isset($_GET['ordenacao'])){
                                       </div>
                                       <div class='modal-body'>
                                         <strong>Telefone :</strong> {$cliente->getTelefone()} <br>
-                                        <strong>Filiacao :</strong> {$cliente->getFiliacao()} <br>
                                         <strong>Nivel de importancia :</strong> {$cliente->getNvlImportancia()}<br>
                                         {$enderecoCobranca}
+                                        {$filiacao}
                                       </div>
                                       <div class='modal-footer'>
                                         <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
