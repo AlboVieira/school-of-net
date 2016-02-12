@@ -19,6 +19,7 @@ if(isset($_GET['ordenacao'])){
     $listaClientes = $instancia->orderList($ordenarValue);
 }
 
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
