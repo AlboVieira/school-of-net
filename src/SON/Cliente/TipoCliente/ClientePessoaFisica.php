@@ -30,18 +30,20 @@ class ClientePessoaFisica extends AbstractCliente
         $this->enderecoCobranca = !is_null($enderecoCobranca) ? $enderecoCobranca : null;
     }
 
-
-
-    public static function getLabelTipoCliente(){
-        return 'Pessoa Fisica';
-    }
-
     /**
      * @return null
      */
     public function getNome()
     {
         return $this->nome;
+    }
+
+    /**
+     * @param null $nome
+     */
+    public function setNome($nome)
+    {
+        $this->nome = $nome;
     }
 
     /**
@@ -53,6 +55,14 @@ class ClientePessoaFisica extends AbstractCliente
     }
 
     /**
+     * @param null $cpf
+     */
+    public function setCpf($cpf)
+    {
+        $this->cpf = $cpf;
+    }
+
+    /**
      * @return null
      */
     public function getFiliacao()
@@ -61,7 +71,15 @@ class ClientePessoaFisica extends AbstractCliente
     }
 
     /**
-     * @return null|string
+     * @param null $filiacao
+     */
+    public function setFiliacao($filiacao)
+    {
+        $this->filiacao = $filiacao;
+    }
+
+    /**
+     * @return string
      */
     public function getTipoCliente()
     {

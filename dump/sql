@@ -1,0 +1,15 @@
+CREATE TABLE `clientes_poo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(145) DEFAULT NULL,
+  `cpf` varchar(13) DEFAULT NULL,
+  `filiacao` varchar(85) DEFAULT NULL,
+  `tipo_cliente` char(1) DEFAULT NULL,
+  `cnpj` varchar(45) DEFAULT NULL,
+  `nome_empresa` varchar(45) DEFAULT NULL,
+  `endereco` varchar(45) DEFAULT NULL,
+  `endereco_cobranca` varchar(45) DEFAULT NULL,
+  `nvlImportancia` int(11) DEFAULT NULL,
+  `telefone` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+SELECT * FROM teste_poo.clientes_poo;

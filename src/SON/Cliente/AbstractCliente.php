@@ -8,12 +8,40 @@
  */
 namespace SON\Cliente;
 
+use SON\Cliente\TipoCliente\ClientePessoaFisica;
+use SON\Cliente\TipoCliente\ClientePessoaJuridica;
+
 abstract class AbstractCliente
 {
+    protected $id;
     protected $endereco;
     protected $enderecoCobranca;
     protected $telefone;
     protected $nvlImportancia;
+
+    public static function getLabelTipoCliente($tipoCliente){
+        $tipos = [
+           ClientePessoaFisica::PESSOA_FISICA => 'Pessoa Fisica',
+            ClientePessoaJuridica::PESSOA_JURIDICA => 'Pessoa Juridica'
+        ];
+        return $tipos[$tipoCliente];
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
 
     /**
      * @return mixed
@@ -21,6 +49,14 @@ abstract class AbstractCliente
     public function getEndereco()
     {
         return $this->endereco;
+    }
+
+    /**
+     * @param mixed $endereco
+     */
+    public function setEndereco($endereco)
+    {
+        $this->endereco = $endereco;
     }
 
     /**
@@ -32,11 +68,27 @@ abstract class AbstractCliente
     }
 
     /**
+     * @param mixed $enderecoCobranca
+     */
+    public function setEnderecoCobranca($enderecoCobranca)
+    {
+        $this->enderecoCobranca = $enderecoCobranca;
+    }
+
+    /**
      * @return mixed
      */
     public function getTelefone()
     {
         return $this->telefone;
+    }
+
+    /**
+     * @param mixed $telefone
+     */
+    public function setTelefone($telefone)
+    {
+        $this->telefone = $telefone;
     }
 
     /**
@@ -47,5 +99,12 @@ abstract class AbstractCliente
         return $this->nvlImportancia;
     }
 
+    /**
+     * @param mixed $nvlImportancia
+     */
+    public function setNvlImportancia($nvlImportancia)
+    {
+        $this->nvlImportancia = $nvlImportancia;
+    }
 
 }

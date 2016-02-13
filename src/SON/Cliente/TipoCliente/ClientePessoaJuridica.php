@@ -35,16 +35,20 @@ class ClientePessoaJuridica extends AbstractCliente
         $this->enderecoCobranca = !is_null($enderecoCobranca) ? $enderecoCobranca : null;
     }
 
-    public static function getLabelTipoCliente(){
-        return 'Pessoa Juridica';
-    }
-
     /**
      * @return null
      */
     public function getCnpj()
     {
         return $this->cnpj;
+    }
+
+    /**
+     * @param null $cnpj
+     */
+    public function setCnpj($cnpj)
+    {
+        $this->cnpj = $cnpj;
     }
 
     /**
@@ -56,11 +60,18 @@ class ClientePessoaJuridica extends AbstractCliente
     }
 
     /**
+     * @param null $nomeEmpresa
+     */
+    public function setNomeEmpresa($nomeEmpresa)
+    {
+        $this->nomeEmpresa = $nomeEmpresa;
+    }
+
+    /**
      * @return string
      */
     public function getTipoCliente()
     {
         return $this->tipoCliente;
     }
-
-}
+    }
