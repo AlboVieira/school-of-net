@@ -1,8 +1,9 @@
 <?php
 require_once 'Autoload.php';
+$db = new \SON\Dao\Database\Database();
 
-$clienteDao = new \SON\Cliente\ClienteDao();
-$listaClientes = $clienteDao->findAllClientes();
+$clienteDao = new \SON\Dao\ClienteDao($db->connect());
+$listaClientes = $clienteDao->findAll();
 
 $ordenarValue = 'DESC';
 $ordenarLabel = 'Descendente';
@@ -16,7 +17,7 @@ if(isset($_GET['ordenacao'])){
         $ordenarValue = 'ASC';
         $ordenarLabel = 'Ascendente';
     }
-    $listaClientes = $clienteDao->findAllClientes($_GET['ordenacao']);
+    $listaClientes = $clienteDao->findAll($_GET['ordenacao']);
 }
 
 require_once "template".DIRECTORY_SEPARATOR."header.php";
